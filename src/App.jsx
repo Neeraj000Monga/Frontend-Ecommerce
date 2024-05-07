@@ -27,10 +27,6 @@ import { useSelector } from "react-redux";
 
 const App = () => {
   const [data, setData] = useState([]);
-  // const [addlist, setAddlist] = useState([]);
-  // const [addlist, setAddlist] = useState(
-  //   JSON.parse(localStorage.getItem("addlist")) || []
-  // );
   const [userData, setUserData] = useState([]);
   const [open, setOpen] = useState(false);
 
@@ -42,21 +38,6 @@ const App = () => {
       setUserData(res.data);
     });
   }, []);
-
-  const addlist = useSelector((state) => state.addItem);
-
-  // const addToItem = (item) => {
-  //   if (addlist.some((add) => add.id === item.id)) {
-  //     setAddlist(addlist.filter((add) => add.id !== item.id));
-  //   } else {
-  //     setAddlist([...addlist, item]);
-  //   }
-  // };
-  // console.log("addlist", addlist)
-
-  // useEffect(() => {
-  //   localStorage.setItem("addlist", JSON.stringify(addlist));
-  // }, [addlist]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -78,11 +59,7 @@ const App = () => {
       <BrowserRouter>
         <Box sx={{ display: "flex" }}>
           <AppBar position="fixed" open={open}>
-            <NavBar
-              handleDrawerOpen={handleDrawerOpen}
-              open={open}
-              addlist={addlist}
-            />
+            <NavBar handleDrawerOpen={handleDrawerOpen} open={open} />
           </AppBar>
           <Drawer
             sx={{
@@ -147,22 +124,13 @@ const App = () => {
                 open={open}
                 setOpen={setOpen}
                 data={data}
-                addlist={addlist}
                 setData={setData}
                 userData={userData}
-                setUserData={setUserData}
               />
             }
           />
           <Route path="/details/:userId" element={<Details />} />
-          <Route
-            path="/AddProduct"
-            element={
-              <AddProduct
-                addlist={addlist}
-              />
-            }
-          />
+          <Route path="/AddProduct" element={<AddProduct />} />
         </Routes>
       </BrowserRouter>
     </Box>

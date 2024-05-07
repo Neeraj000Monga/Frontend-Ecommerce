@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 
 import { Box, CardContent, Container, Typography } from "@mui/material";
 import {
@@ -13,14 +12,17 @@ import Rating from "@mui/material/Rating";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useTheme } from "@mui/material";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeAllItems, toggleItem } from "../store/features/AddToItemSlice";
 
-const AddProduct = ({ addToItem }) => {
+const AddProduct = () => {
   const [amount, setAmount] = useState(1);
   const [value, setValue] = useState(2);
   const theme = useTheme();
 
   const addlist = useSelector((state) => state.addToItem.addlist);
+
+  const dispatch = useDispatch();
 
   const stock = 5;
   const istoggleMode = useSelector((state) => state.auth);
@@ -32,6 +34,13 @@ const AddProduct = ({ addToItem }) => {
     amount < stock ? setAmount(amount + 1) : setAmount(stock);
   };
 
+  const handleRemoveAll = () => {
+    dispatch(removeAllItems());
+  };
+
+  const addToItem = (item) => {
+    dispatch(toggleItem(item));
+  };
 
   return (
     <Container
@@ -61,6 +70,11 @@ const AddProduct = ({ addToItem }) => {
         >
           AddProduct
         </Typography>
+        {addlist.length > 1 && (
+          <AddButton sx={{ height: "30px" }} onClick={handleRemoveAll}>
+            All Remove
+          </AddButton>
+        )}
       </Box>
       {console.log("addlist", addlist)}
       {addlist?.map((item, index) => (
@@ -179,9 +193,6 @@ const AddProduct = ({ addToItem }) => {
   );
 };
 
-AddProduct.propTypes = {
-  addToItem: PropTypes.func.isRequired,
-  setAddlist: PropTypes.func.isRequired,
-};
+
 
 export default AddProduct;

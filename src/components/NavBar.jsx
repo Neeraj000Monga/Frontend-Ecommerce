@@ -71,7 +71,6 @@ const NavBar = ({ setUserData, data, handleDrawerOpen, open }) => {
 
   const istoggleMode = useSelector((state) => state.auth);
   const addlist = useSelector((state) => state.addToItem.addlist);
-  // console.log(istoggleMode, "IsToggleMode");
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -102,31 +101,6 @@ const NavBar = ({ setUserData, data, handleDrawerOpen, open }) => {
     navigate("/");
   };
 
-  // ***************** SearchFilter ***********************
-
-  // ***************** darkMode ***********************
-  // const [darkMode, setDarkMode] = useState(
-  //   localStorage.getItem("darkMode") === "true"
-  // );
-  //  ==
-  // useEffect(() => {
-  //   localStorage.setItem("darkMode", darkMode);
-  //   localStorage.setItem("addlist", JSON.stringify(addlist));
-  // }, [darkMode, addlist]);
-  //  ==
-  // const toggleDarkMode = () => {
-  //   setDarkMode(!darkMode);
-  // };
-  //==
-  //   <IconButton onClick={toggleDarkMode}>
-  //   {darkMode ? (
-  //     <Brightness7Icon sx={{ color: darkMode ? "#fff" : "#000" }} />
-  //   ) : (
-  //     <Brightness4Icon sx={{ color: darkMode ? "#fff" : "#000" }} />
-  //   )}
-  // </IconButton>
-
-  // ***************** darkMode ***********************
   const Filter = (event) => {
     setUserData(
       data?.filter((f) =>
@@ -319,8 +293,6 @@ NavBar.propTypes = {
   handleDrawerOpen: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired,
   open: PropTypes.array.isRequired,
-  darkMode: PropTypes.array.isRequired,
-  setDarkMode: PropTypes.array.isRequired,
 };
 
 export default NavBar;

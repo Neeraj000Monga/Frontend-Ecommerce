@@ -14,6 +14,7 @@ import Rating from "@mui/material/Rating";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleItem } from "../store/features/AddToItemSlice";
 
+
 const Ecommerce = ({ userData }) => {
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -103,7 +104,6 @@ const Ecommerce = ({ userData }) => {
                       sx={{
                         width: "100%",
                         maxWidth: "290px",
-                        // border: "2px solid red",
                         background: istoggleMode?.darkmode ? "#000" : "#eadcdc",
                         color: !istoggleMode?.darkmode ? "#000" : "#fff",
                         ...(addlist?.some((add) => add?.id === item?.id) && {

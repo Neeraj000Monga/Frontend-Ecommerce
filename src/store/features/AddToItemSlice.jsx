@@ -18,9 +18,14 @@ const addToItemSlice = createSlice({
       }
       localStorage.setItem("addlist", JSON.stringify(state.addlist));
     },
+    removeAllItems: (state) => {
+      state.addlist = [];
+      localStorage.removeItem("addlist");
+    },
   },
 });
 
-export const { toggleItem } = addToItemSlice.actions;
+export const { toggleItem, removeAllItems } = addToItemSlice.actions;
 
 export default addToItemSlice.reducer;
+

@@ -64,7 +64,7 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const Dashboard = ({ addlist, userData, setOpen, open }) => {
+const Dashboard = ({userData, setOpen, open,  }) => {
   const theme = useTheme();
   const handleDrawerClose = () => {
     setOpen(false);
@@ -123,16 +123,13 @@ const Dashboard = ({ addlist, userData, setOpen, open }) => {
         </List>
       </Drawer>
       <Main open={open}>
-        {/* <DrawerHeader /> */}
-        <Ecommerce addlist={addlist} userData={userData} />
+        <Ecommerce userData={userData} />
       </Main>
     </Box>
   );
 };
 Dashboard.propTypes = {
   setOpen: PropTypes.array.isRequired,
-  addlist: PropTypes.array.isRequired,
-  setUserData: PropTypes.func.isRequired,
   userData: PropTypes.array.isRequired,
   darkMode: PropTypes.bool.isRequired,
   open: PropTypes.func.isRequired,
